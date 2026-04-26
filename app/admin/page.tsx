@@ -1,12 +1,10 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
+import { createClient } from '@/lib/supabase/client'; // Double check this path exists!
 
 export default function AdminPage() {
   const [categoryName, setCategoryName] = useState('');
   const [categories, setCategories] = useState<any[]>([]);
-  
-  // Product State
   const [productName, setProductName] = useState('');
   const [price, setPrice] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -14,7 +12,6 @@ export default function AdminPage() {
 
   const supabase = createClient();
 
-  // Load categories when page opens
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -30,23 +27,23 @@ export default function AdminPage() {
     else {
       alert("Category added!");
       setCategoryName('');
-      fetchCategories(); // Refresh the list
+      fetchCategories();
     }
   };
 
   const handleAddProduct = async () => {
     const { error } = await supabase.from('products').insert([
       { 
-        name: productName, 
+        title: productName, // Changed from 'name' to 'title' to match your SQL
         price: parseFloat(price), 
         category_id: selectedCategory,
-        image_url: imageUrl 
+        images: [imageUrl] // Changed from 'image_url' to 'images' array to match your SQL
       }
     ]);
 
-    if (error) alert("Error adding product: " + error.message);
+    if (error) alert("Error: " + error.message);
     else {
-      alert("Product added to AS Collection!");
+      alert("Product added successfully!");
       setProductName('');
       setPrice('');
       setImageUrl('');
@@ -54,75 +51,25 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="p-8 bg-as-cream min-h-screen font-sans text-as-charcoal">
-      <h1 className="text-4xl font-bold mb-10 border-b pb-4">AS Collection Dashboard</h1>
-      
-      <div className="grid md:grid-cols-2 gap-10">
-        
-        {/* SECTION 1: CATEGORIES */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-as-sand">
-          <h2 className="text-xl font-semibold mb-4 text-as-coral">1. Manage Categories</h2>
-          <div className="space-y-4">
-            <input 
-              type="text" 
-              value={categoryName}
-              onChange={(e) => setCategoryName(e.target.value)}
-              placeholder="New Category Name"
-              className="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-as-coral"
-            />
-            <button 
-              onClick={handleAddCategory}
-              className="w-full bg-as-charcoal text-white py-3 rounded-xl font-medium hover:bg-opacity-90"
-            >
-              Save Category
-            </button>
-          </div>
+    <div className="p-8 bg-[#F2EFE9] min-h-screen">
+      <h1 className="text-3xl font-bold text-[#5A5452] mb-8">AS Collection Admin</h1>
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="bg-white p-6 rounded-xl shadow-sm border">
+          <h2 className="text-xl font-semibold mb-4">Add Category</h2>
+          <input type="text" value={categoryName} onChange={(e) => setCategoryName(e.target.value)} placeholder="Category Name" className="w-full p-2 border rounded mb-4"/>
+          <button onClick={handleAddCategory} className="w-full bg-[#FF8A7A] text-white py-2 rounded">Save Category</button>
         </div>
-
-        {/* SECTION 2: PRODUCTS */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-as-sand">
-          <h2 className="text-xl font-semibold mb-4 text-as-coral">2. Add New Product</h2>
-          <div className="space-y-4">
-            <input 
-              type="text" 
-              placeholder="Product Name (e.g. Floral Summer Dress)" 
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
-              className="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-as-coral"
-            />
-            <input 
-              type="number" 
-              placeholder="Price (e.g. 2500)" 
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              className="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-as-coral"
-            />
-            <select 
-              className="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-as-coral bg-white"
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-            >
-              <option value="">Select Category</option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>{cat.name}</option>
-              ))}
-            </select>
-            <input 
-              type="text" 
-              placeholder="Image Link (URL)" 
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              className="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-as-coral"
-            />
-            <button 
-              onClick={handleAddProduct}
-              className="w-full bg-as-coral text-white py-3 rounded-xl font-bold hover:shadow-lg transition"
-            >
-              Upload Product
-            </button>
-          </div>
+        <div className="bg-white p-6 rounded-xl shadow-sm border">
+          <h2 className="text-xl font-semibold mb-4">Add Product</h2>
+          <input type="text" placeholder="Product Title" value={productName} onChange={(e) => setProductName(e.target.value)} className="w-full p-2 border rounded mb-2"/>
+          <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} className="w-full p-2 border rounded mb-2"/>
+          <select className="w-full p-2 border rounded mb-2" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+            <option value="">Select Category</option>
+            {categories.map((cat) => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
+          </select>
+          <input type="text" placeholder="Image URL" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className="w-full p-2 border rounded mb-4"/>
+          <button onClick={handleAddProduct} className="w-full bg-[#FF8A7A] text-white py-2 rounded">Upload Product</button>
         </div>
-
       </div>
     </div>
   );
