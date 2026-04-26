@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client'; // Double check this path exists!
+import { createClient } from '../lib/supabase/client';
 
 export default function AdminPage() {
   const [categoryName, setCategoryName] = useState('');
