@@ -13,7 +13,7 @@ export async function getProducts(category?: string) {
     return [];
   }
 
-  let query = supabase.from('products').select('*');
+  let query = supabase.from('products').select('*').order('created_at', { ascending: false });
   if (category && category !== 'shop') {
     query = query.eq('category', category);
   }
@@ -26,4 +26,10 @@ export async function getProducts(category?: string) {
   }
   
   return data || [];
+}
+
+export async function createOrder(orderData: any) {
+  if (!supabase) return { error: "Supabase not initialized" };
+  const { data, error } = await supabase.from('orders').insert([orderData]);
+  return { data, error: error?.message };
 }

@@ -316,6 +316,7 @@ export default function AdminPage() {
                     <tr className="border-b border-gray-100 text-[#65586d]">
                       <th className="pb-3 font-semibold">Order ID</th>
                       <th className="pb-3 font-semibold">Customer</th>
+                      <th className="pb-3 font-semibold">Items</th>
                       <th className="pb-3 font-semibold">Date</th>
                       <th className="pb-3 font-semibold">Total</th>
                       <th className="pb-3 font-semibold">Status</th>
@@ -329,6 +330,17 @@ export default function AdminPage() {
                         <td className="py-4">
                           <p className="font-bold text-[#3b234a]">{order.customer_name}</p>
                           <p className="text-xs text-[#65586d]">{order.customer_phone}</p>
+                          <p className="text-xs text-[#65586d] truncate max-w-[150px]" title={order.customer_address}>{order.customer_address}</p>
+                        </td>
+                        <td className="py-4">
+                          <div className="max-h-20 overflow-y-auto text-xs space-y-1 pr-2">
+                            {order.items && Array.isArray(order.items) ? order.items.map((item: any, idx: number) => (
+                              <div key={idx} className="flex justify-between gap-2 border-b border-gray-100 last:border-0 pb-1 mb-1">
+                                <span className="text-[#3b234a] font-medium truncate max-w-[120px]" title={item.name}>{item.name}</span>
+                                <span className="text-[#65586d]">x{item.quantity}</span>
+                              </div>
+                            )) : <span className="text-gray-400">No items format</span>}
+                          </div>
                         </td>
                         <td className="py-4 text-[#65586d]">{new Date(order.created_at).toLocaleDateString()}</td>
                         <td className="py-4 font-bold text-[#f17a7e]">Rs. {order.total_amount}</td>
