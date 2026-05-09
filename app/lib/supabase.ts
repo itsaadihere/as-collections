@@ -8,7 +8,7 @@ export const supabase = supabaseUrl && supabaseKey
   ? createClient(supabaseUrl, supabaseKey)
   : null;
 
-export async function getProducts(category?: string) {
+export async function getProducts(category?: string, search?: string) {
   if (!supabase) {
     return [];
   }
@@ -16,6 +16,9 @@ export async function getProducts(category?: string) {
   let query = supabase.from('products').select('*').order('created_at', { ascending: false });
   if (category && category !== 'shop') {
     query = query.eq('category', category);
+  }
+  if (search) {
+    query = query.ilike('name', `%${search}%`);
   }
   
   const { data, error } = await query;

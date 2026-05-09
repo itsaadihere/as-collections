@@ -35,7 +35,7 @@ export default function ProductGrid({ products, title, subtitle, linkText, linkH
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-12 sm:gap-y-16">
           {products.map((product) => (
             <div key={product.id} className="group cursor-pointer">
               <div className="relative bg-[#f5f5f5] overflow-hidden aspect-[3/4] mb-5">
@@ -51,9 +51,9 @@ export default function ProductGrid({ products, title, subtitle, linkText, linkH
                   </button>
                 </div>
               </div>
-              <p className="text-[9px] text-[#8c8273] uppercase tracking-[0.2em] mb-2">{product.category || 'Collection'}</p>
-              <h3 className="font-serif text-[19px] text-[#4a4238] leading-tight mb-2">{product.name}</h3>
-              <p className="text-[#4a4238] text-[13px] font-medium tracking-wide">Rs. {product.price}</p>
+              <p className="text-[8px] sm:text-[9px] text-[#8c8273] uppercase tracking-[0.2em] mb-1 sm:mb-2">{product.category || 'Collection'}</p>
+              <h3 className="font-serif text-[15px] sm:text-[19px] text-[#4a4238] leading-tight mb-1 sm:mb-2">{product.name}</h3>
+              <p className="text-[#4a4238] text-[11px] sm:text-[13px] font-medium tracking-wide">Rs. {product.price}</p>
             </div>
           ))}
         </div>

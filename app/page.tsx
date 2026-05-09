@@ -35,21 +35,21 @@ export default async function Home() {
 
       {/* Features Bar */}
       <div className="border-b border-[#e5e0d8] bg-[#fbf9f6]">
-        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-[#e5e0d8] text-center">
+        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 md:gap-8 md:divide-x md:divide-[#e5e0d8] text-center">
           <div className="flex flex-col items-center justify-center space-y-2">
-            <span className="font-serif text-[17px] text-[#4a4238]">Organic Cotton</span>
+            <span className="font-serif text-[15px] md:text-[17px] text-[#4a4238]">Organic Cotton</span>
             <span className="text-[9px] text-[#8c8273] uppercase tracking-[0.2em]">Gentle on skin</span>
           </div>
           <div className="flex flex-col items-center justify-center space-y-2">
-            <span className="font-serif text-[17px] text-[#4a4238]">Ethically Made</span>
+            <span className="font-serif text-[15px] md:text-[17px] text-[#4a4238]">Ethically Made</span>
             <span className="text-[9px] text-[#8c8273] uppercase tracking-[0.2em]">In Pakistan</span>
           </div>
           <div className="flex flex-col items-center justify-center space-y-2">
-            <span className="font-serif text-[17px] text-[#4a4238]">Premium Quality</span>
+            <span className="font-serif text-[15px] md:text-[17px] text-[#4a4238]">Premium Quality</span>
             <span className="text-[9px] text-[#8c8273] uppercase tracking-[0.2em]">Built to last</span>
           </div>
           <div className="flex flex-col items-center justify-center space-y-2">
-            <span className="font-serif text-[17px] text-[#4a4238]">Fast Delivery</span>
+            <span className="font-serif text-[15px] md:text-[17px] text-[#4a4238]">Fast Delivery</span>
             <span className="text-[9px] text-[#8c8273] uppercase tracking-[0.2em]">Nationwide</span>
           </div>
         </div>

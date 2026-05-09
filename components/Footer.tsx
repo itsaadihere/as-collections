@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-[#fbf9f6] text-[#4a4238] py-20 border-t border-[#e5e0d8] mt-auto">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 text-sm">
         
         {/* Brand & Socials */}
         <div className="space-y-6 pr-4">
@@ -32,39 +32,10 @@ export default function Footer() {
             <li><Link href="/new-arrivals" className="hover:text-[#4a4238] transition-colors">New Arrivals</Link></li>
             <li><Link href="/shop?category=girls" className="hover:text-[#4a4238] transition-colors">Girls</Link></li>
             <li><Link href="/shop?category=boys" className="hover:text-[#4a4238] transition-colors">Boys</Link></li>
-            <li><Link href="/shop" className="hover:text-[#4a4238] transition-colors">Toddlers</Link></li>
-            <li><Link href="/shop" className="hover:text-[#4a4238] transition-colors">Sale</Link></li>
           </ul>
         </div>
 
-        {/* Customer Care */}
-        <div className="space-y-6">
-          <h3 className="font-serif text-[17px]">Customer Care</h3>
-          <ul className="space-y-4 text-[11px] text-[#8c8273]">
-            <li><Link href="/account" className="hover:text-[#4a4238] transition-colors">My Account</Link></li>
-            <li><Link href="/track-order" className="hover:text-[#4a4238] transition-colors">Track Order</Link></li>
-            <li><Link href="/shipping" className="hover:text-[#4a4238] transition-colors">Shipping & Returns</Link></li>
-            <li><Link href="/size-guide" className="hover:text-[#4a4238] transition-colors">Size Guide</Link></li>
-            <li><Link href="/faq" className="hover:text-[#4a4238] transition-colors">FAQs</Link></li>
-            <li><Link href="/contact" className="hover:text-[#4a4238] transition-colors">Contact Us</Link></li>
-          </ul>
-        </div>
 
-        {/* Newsletter */}
-        <div className="space-y-6">
-          <h3 className="font-serif text-[17px]">Newsletter</h3>
-          <p className="text-[11px] text-[#8c8273] leading-relaxed">Subscribe to receive updates, access to exclusive deals, and more.</p>
-          <div className="flex border-b border-[#d4cec5] py-2">
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
-              className="bg-transparent w-full text-[11px] outline-none placeholder-[#8c8273] text-[#4a4238]"
-            />
-            <button className="text-[9px] font-bold tracking-[0.2em] text-[#4a4238] hover:text-[#a68e7b] transition-colors ml-2">
-              SUBSCRIBE
-            </button>
-          </div>
-        </div>
 
       </div>
     </footer>
