@@ -13,7 +13,7 @@ export default async function Home() {
       {/* Hero Section */}
       <div className="relative w-full h-[85vh] overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=2000&h=1200" 
+          src="/hero-baby.png" 
           alt="Premium Kids Clothing"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
